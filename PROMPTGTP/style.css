@@ -8,7 +8,27 @@
 body {
   background-color: #f9f9f9;
   color: #343434;
+  /* overflow-x:auto; */
 }
+/* Customize the scrollbar of the entire page */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #0051ea;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
 
 ::selection {
   background-color: #0051ea;
@@ -51,6 +71,9 @@ header {
   display: inline-block;
   margin-right: 20px;
   /* display: flex; */
+}
+.menucontainer ul:hover{
+  color: #0051ea;
 }
 
 .menucontainer ul li:last-child {
@@ -117,6 +140,9 @@ header {
     padding: 0.5rem;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .menucontainer ul li:hover{
+    color: #0051ea;
   }
 
   /* Show the ul li items when the hamburger icon is clicked */
@@ -324,14 +350,41 @@ header {
 .title {
   font-weight: 900;
   font-size: 1.5rem;
-  color: #343434;
+  color: #0051ea;
   margin: 1rem 0rem;
 }
 .prompttext {
   color: rgb(54, 54, 54);
   text-align: left;
   margin-bottom: 2rem;
+  max-height: 150px;
+  overflow:scroll;
+  transition: max-height 0.3s ease;
 }
+.prompttext.expanded {
+  max-height: none;
+}
+
+
+/* Customize scrollbar */
+.prompttext::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+}
+
+.prompttext::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+.prompttext::-webkit-scrollbar-thumb {
+  background-color: #0051ea;
+  border-radius: 5px;
+}
+
+.prompttext::-webkit-scrollbar-thumb:hover {
+  background-color: #0039a4;
+}
+
 .prompttext p {
   max-lines: 2;
 }
@@ -378,22 +431,22 @@ header {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   outline: none;
+  width: 100%;
 }
 
-.submitbtn{
-    padding: 10px 20px;
-    outline: none;
-    background-color: #0051ea;
-    color: white;
-    border: 0px solid rgba(0, 0, 0, 0.0);
-    cursor: pointer;
-    border-radius: 5px;
+.submitbtn {
+  padding: 10px 20px;
+  outline: none;
+  background-color: #0051ea;
+  color: white;
+  border: 0px solid rgba(0, 0, 0, 0);
+  cursor: pointer;
+  border-radius: 5px;
 }
 
-.submitbtn:hover{
-    background-color: #2771fb;
+.submitbtn:hover {
+  background-color: #2771fb;
 }
-
 
 .notice {
   position: fixed;
@@ -404,12 +457,12 @@ header {
   color: white;
 }
 
-.bottomicons{
+.bottomicons {
   display: flex;
   align-items: center;
 }
 
-.textareaa{
+.textareaa {
   padding: 10px 20px;
   margin: 1rem 0rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -417,7 +470,109 @@ header {
   outline: none;
   display: flex;
   justify-content: flex-start;
-  align-items:flex-start;
+  align-items: flex-start;
   text-align: justify;
+}
+
+.promptcopy {
+  background-color: transparent !important;
+  background: none;
+}
+
+img.free {
+  width: 40px;
+  height: auto;
+}
+img.verified {
+  width: 14px;
+  height: auto;
+  position: relative;
+}
+
+.verified:hover::after {
+  content: "Verified";
+  background-color: black;
+  color: white;
+  padding: 5px;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.profilecontainer{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
   
+  
+}
+
+.profileleft{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: white;
+  color: #343434;
+  margin-left: 5rem;
+  margin-bottom: 5rem;
+  padding: 2rem;
+  border-radius: 10px;
+  
+}
+
+.profilecontent{
+  display: flex;
+  align-items: center;
+}
+.profilepicture{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-bottom: 2rem;
+
+}
+.profileleft{
+  width: 20%;
+  height: auto;
+}
+
+.username{
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: 800;
+  padding-right: 10px;
+}
+
+
+
+.profileright{
+  background-color: white;
+  color: #343434;
+  margin-right: 5rem;
+  margin-left: 2rem;
+  margin-bottom: 5rem;
+  padding: 2rem;
+  width: 80%;
+  border-radius: 10px;
+
+}
+
+.thinhr{
+  margin: 1rem 0rem;
+  color: #343434;
+  
+}
+
+.profileinfo{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.profileinfoform{
+  width: 100%;
 }

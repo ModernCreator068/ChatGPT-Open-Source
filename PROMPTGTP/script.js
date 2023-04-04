@@ -41,18 +41,37 @@
 }
 
 {
+  const copyPromptText = () => {
+    navigator.clipboard.writeText(promptText.innerText)
+      .then(() => {
+        console.log("Prompt text copied to clipboard.");
+      })
+      .catch((error) => {
+        console.error("Failed to copy prompt text: ", error);
+      });
+  }
+  
+  document.querySelector('.promptcopy').addEventListener('click', copyPromptText);
+}
+
+// {
   
 
-const copyButton = document.getElementById("copyButton");
-const promptText = document.getElementById("promptText");
+//   const copyButton = document.getElementById("copyButton");
+//   const promptText = document.getElementById("promptText");
+  
+//   copyButton.addEventListener("click", () => {
+//   navigator.clipboard.writeText(promptText.innerText)
+//   .then(() => {
+//   console.log("Prompt text copied to clipboard.");
+//   })
+//   .catch((error) => {
+//   console.error("Failed to copy prompt text: ", error);
+//   });
+//   });
+//   }
 
-copyButton.addEventListener("click", () => {
-navigator.clipboard.writeText(promptText.innerText)
-.then(() => {
-console.log("Prompt text copied to clipboard.");
-})
-.catch((error) => {
-console.error("Failed to copy prompt text: ", error);
-});
-});
+
+{
+  
 }

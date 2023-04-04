@@ -5,6 +5,10 @@ $dbname = 'PROMPTGPT';
 $username = 'root';
 $password = '';
 
+define('WEBSITE_URL', 'http://localhost/');
+
+
+
 // PDO database connection
 try {
   $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);

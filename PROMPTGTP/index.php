@@ -1,3 +1,13 @@
+<?php
+// Check if requested file exists
+if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI'])) {
+    // File not found, redirect to 404 page
+    header('HTTP/1.0 404 Not Found');
+    include('404.php');
+    exit();
+} 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,22 +20,15 @@
 
 </head>
 <body>
-    <header>
-        <div class="headercontainer">
-            <div class="logocontainer">
-                <h2>PromptGPT</h2>
-            </div>
-            <div class="menucontainer">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Login</a></li>
-                </ul>
-            </div>
-            <div class="ctacontainer">
-                <button class="ctabtn" href="prompts.html">Prompts</button>
-            </div>
-        </div>
+<header>
+    <?php
+if (isset($_COOKIE['token'])) {
+    include('loggedinheader.php');
+} else {
+    include('header.html');
+}
+?>
+
     </header>
     
     <main>

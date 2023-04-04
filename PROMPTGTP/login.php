@@ -49,62 +49,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROMPTGPT - ChatGPT Jailbreak and Prompts</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        integrity="sha512-r5kyk0bM1yXRSJx51x2QmIbcDxd0ZJzQlKbN/1znnOEdI/VRnpX9xNLFpJazdxtNqO3lK5ZViG5ZO5zIJfYAg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROMPTGPT - ChatGPT Jailbreak and Prompts</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-r5kyk0bM1yXRSJx51x2QmIbcDxd0ZJzQlKbN/1znnOEdI/VRnpX9xNLFpJazdxtNqO3lK5ZViG5ZO5zIJfYAg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
 <body>
-    <header>
-        <div class="headercontainer">
-            <div class="logocontainer">
-                <h2>PromptGPT</h2>
-            </div>
-            <div class="menucontainer">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about.html">About</a></li>
-                    <li><a href="/prompts.html">Prompts</a></li>
-                    <li><a href="/login.html">Login</a></li>
-                </ul>
-            </div>
-            <div class="ctacontainer">
-                <button class="ctabtn" href="prompts.html">Prompts</button>
-            </div>
-        </div>
-    </header>
+  <header>
+    <?php
+    if (isset($_COOKIE['token'])) {
+      include('loggedinheader.php');
+    } else {
+      include('header.html');
+    }
+    ?>
 
     <main>
-    <section class="logincontainer">
-    <div class="loginbox">
-      <h2>Login Here</h2>
-      <?php if (isset($error)): ?>
-        <p style="color: red"><?php echo $error; ?></p>
-      <?php endif; ?>
-      <div class="loginform">
-        <form method="post">
-          <input class="inputfield" type="email" required name="email" placeholder="Please enter your email">
-          <input class="inputfield" type="password" required name="password" placeholder="Please enter your password">
-          <button class="submitbtn" type="submit">Login Now</button>
-        </form>
-      </div>
-    </div>
-  </section>
+      <section class="logincontainer">
+        <div class="loginbox">
+          <h2>Login Here</h2>
+          <?php if (isset($error)): ?>
+            <p style="color: red">
+              <?php echo $error; ?>
+            </p>
+          <?php endif; ?>
+          <div class="loginform">
+            <form method="post">
+              <input class="inputfield" type="email" required name="email" placeholder="Please enter your email">
+              <input class="inputfield" type="password" required name="password"
+                placeholder="Please enter your password">
+              <button class="submitbtn" type="submit">Login Now</button>
+            </form>
+          </div>
+        </div>
+      </section>
 
     </main>
 
 
 
     <footer>
-        <div class="footercontainer">
-            <p>Copyright 2023 | All rights reserved Developed by <a href="#">Team Modernlisim</a></p>
-        </div>
+      <div class="footercontainer">
+        <p>Copyright 2023 | All rights reserved Developed by <a href="#">Team Modernlisim</a></p>
+      </div>
     </footer>
     <script src="script.js"></script>
 </body>

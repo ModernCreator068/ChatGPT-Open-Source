@@ -47,25 +47,17 @@ global $pagination;
 </head>
 
 <body>
-    <header>
-        <div class="headercontainer">
-            <div class="logocontainer">
-                <h2>PromptGPT</h2>
-            </div>
-            <div class="menucontainer">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about.html">About</a></li>
-                    <li><a href="/prompts.html">Prompts</a></li>
-                    <li><a href="/login.html">Login</a></li>
-                </ul>
-            </div>
-            <div class="ctacontainer">
-                <button class="ctabtn" href="#">Prompts</button>
-            </div>
-        </div>
-    </header>
+<header>
+    <?php
+if (isset($_COOKIE['token'])) {
+    include('loggedinheader.php');
+} else {
+    include('header.html');
+}
+?>
 
+    </header>
+    <div id="typing-text"></div>
     <main>
         <div class="promptscontainer">
             <?php foreach ($commands as $command) { ?>
@@ -74,24 +66,22 @@ global $pagination;
                         <?php echo $command['title']; ?>
                     </div>
                     <div class="prompttext">
-                        <p>
+                        <p >
                             <?php
-                            $words = explode(" ", $command['prompt']);
-                            if (count($words) > 30) {
-                                $words = array_slice($words, 0, 50);
-                                echo implode(" ", $words) . " ...";
-                            } else {
-                                echo $command['prompt'];
-                            }
+                            echo $command['prompt'];
+
                             ?>
                         </p>
+                        
                     </div>
+                    <!-- <button class="expand-btn">Expand</button> -->
                     <div class="bottomicons">
                         <div class="copybtn">
-                            <button class="promptcopy"> Copy Prompt</button>
-                            
+                        <img class="promptcopy" src="./imgs/copy.svg">
+                        <!-- <button class="promptcopy ctabtn">Copy Prompt</button> -->
+
                             <span style="margin:0rem 1rem;">
-                                <div class="writer">
+                                <div class="writer" id="typing-text">
                                     <?php echo $command['writer']; ?>
                                 </div>
                             </span>
@@ -112,6 +102,10 @@ global $pagination;
     </main>
 
 
+    <script>
+  
+    </script>
+
 
 
     <footer>
@@ -119,7 +113,9 @@ global $pagination;
             <p>Copyright 2023 | All rights reserved</p>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="promptjs.js"></script>
+
+
 </body>
 
 </html>

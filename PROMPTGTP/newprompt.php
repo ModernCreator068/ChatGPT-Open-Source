@@ -1,5 +1,11 @@
 <?php
 require_once 'config.php';
+// Check if the user is logged in
+if (!isset($_COOKIE['token'])) {
+    // Redirect to the login page
+    header('Location: login.php');
+    exit();
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle form submission
@@ -16,26 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 }
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>New Command</title>
-</head>
-<body>
-    <h1>New Command</h1>
-    <form method="post">
-        <label for="title">Title:</label>
-        <input type="text" name="title" required><br><br>
-        <label for="prompt">Prompt:</label>
-        <textarea name="prompt" required></textarea><br><br>
-        <label for="writer">Writer:</label>
-        <input type="text" name="writer" value="CODERRR" disabled><br><br>
-        <input type="submit" value="Submit">
-    </form>
-</body>
-</html>
 
 
 
@@ -55,37 +41,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <header>
-        <div class="headercontainer">
-            <div class="logocontainer">
-                <h2>PromptGPT</h2>
-            </div>
-            <div class="menucontainer">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about.html">About</a></li>
-                    <li><a href="/prompts.html">Prompts</a></li>
-                    <li><a href="/login.html">Login</a></li>
-                </ul>
-            </div>
-            <div class="ctacontainer">
-                <button class="ctabtn" href="prompts.html">Prompts</button>
-            </div>
-        </div>
+<header>
+    <?php
+if (isset($_COOKIE['token'])) {
+    include('loggedinheader.php');
+} else {
+    include('header.html');
+}
+?>
+
     </header>
 
     <main>
     <section class="logincontainer">
     <div class="loginbox">
-      <h2>Login Here</h2>
+      <h2>Make New Prompt Online</h2>
       <?php if (isset($error)): ?>
         <p style="color: red"><?php echo $error; ?></p>
       <?php endif; ?>
       <div class="loginform">
         <form method="post">
-          <input class="inputfield" type="text" name="title" required placeholder="Please enter title">
-          <textarea class="textareaa" type="textarea" required name="prompt" placeholder="Please enter your prompt"></textarea>
-          <input class="inputfield" type="text" name="writer" id="writer" value="PromptGPT" disabled required>
+          <input class="inputfield" type="text" name="title" required placeholder="Please enter prompt title*">
+          <textarea class="textareaa" type="textarea" required name="prompt" placeholder="Please enter your prompt*"></textarea>
+          <input class="inputfield" type="text" name="writer" id="writer" value="PromptGPT" disabled>
           <button class="submitbtn" type="submit">Add New Submission</button>
         </form>
       </div>
